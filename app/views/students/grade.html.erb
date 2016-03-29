@@ -1,0 +1,58 @@
+<%= link_to '<< Atras', student_dashboard_path %>
+<hr/>
+<div class="grade">
+  <h2><small>Grado:</small><%= @grade.name %></h2>
+    <div class="well">
+      <div class="row">
+        <div class="col md 4">
+          <strong>Periodo:</strong><%= @grade.period.name %>
+        </div>
+        <div class="col-md-4">
+          <strong>Estatus:</strong>
+          <% if @grade.current? %>
+              <span class="label label-success">Cursando</span>
+          <% else %>
+              <span class="label label-danger">Finalizado</span>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <strong>Resultado:</strong>
+          <% if @result >= 65 %>
+            <p><a class="btn btn-md btn-success">PROMOVIDO</a> con un promedio de  <%= @result %></p>
+          <% else %>
+            <p><a class="btn btn-md btn-danger">REPROBADO</a> con un promedio de <%= @result %></p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="materias">
+      <h3>Materias Cursadas</h3>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Maestro</th>
+            <th>Periodo</th>
+            <th>Calificacion</th>
+            <th>Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @grade.courses.each_with_index do |c, i| %>
+            <tr>
+              <th scope="row"><%= i+1 %></th>
+              <td><%=c.name  %></td>
+              <td><%= full_name(c.teacher) %></td>
+              <td><%= c.grade.period.name %></td>
+              <td><strong><%= c.scores.where(student_id: current_student).first.score_final if c.scores.any? %></strong></td>
+              <td><%= link_to 'Ver Detalles', student_course_path(c), class: 'btn btn-xs btn-default' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+
+      </table>
+    </div>
+
+</div>

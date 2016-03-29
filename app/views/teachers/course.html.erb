@@ -1,0 +1,59 @@
+<%= link_to '<< Atras', :back %>
+<hr/>
+<h2><small>Materia:</small><%= @course.name %></h2>
+<div class="well">
+  <div class="row">
+    <div class="col-md-4">
+      <strong>Profesor: </strong><%= link_to full_name(@course.teacher), "mailto:#{@course.teacher.email}" %>
+      <br/>
+      <strong>Estudiantes: </strong><%= @course.scores.count %>
+    </div>
+    <div class="col-md-4">
+      <strong>Grado: </strong><%= @course.grade.name %> <br/>
+      <strong>Periodo: </strong><%= @course.grade.period.name %>
+    </div>
+    <div class="col-md-4">
+      <strong>Estatus:</strong>
+      <% if @course.grade.current? %>
+          <span class="label label-success">Cursando</span>
+      <% else %>
+          <span class="label label-danger">Finalizado</span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<h3>Estudiantes</h3>
+<div class="row calificacion">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Q4</th>
+        <th>Examen</th>
+        <th>Calificacion final</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @course.scores.each_with_index do |s, i| %>
+          <tr>
+            <th scope="row"><%= i+1 %></th>
+            <td><%= full_name(s.student) %></td>
+            <td><%= s.score_one %></td>
+            <td><%= s.score_two %></td>
+            <td><%= s.score_three %></td>
+            <td><%= s.score_four %></td>
+            <td><%= s.score_test %></td>
+            <td><%= s.score_final %></td>
+            <td><%= link_to 'Modificar Calificacion', edit_score_for_teacher_path(s), class: 'btn btn-xs btn-default' if @course.grade.current? %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

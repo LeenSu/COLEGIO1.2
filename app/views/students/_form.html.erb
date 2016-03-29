@@ -1,0 +1,91 @@
+<%= form_for @student, :html => { :class => "form-horizontal student" } do |f| %>
+
+  <% if @student.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @student.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :email, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:email) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Password', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.password_field :password, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:password) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Nombres', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Apellidos', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :last_name, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:last_name) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Genero', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.radio_button :genre, 'Mas' %> Masculino <br><br>
+      <%= f.radio_button :genre, 'Fen' %> Femenino
+    </div>
+    <%=f.error_span(:genre) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Nacimiento', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.date_select :birth,{}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:birth) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Madre', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :mother, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:mother) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Padre', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :father, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:father) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Tel/Cel', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :phone, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:phone) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Crear Estudiante', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("Cancelar")),
+                students_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

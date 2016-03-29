@@ -1,0 +1,27 @@
+<%- model_class = Teacher -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:email) %>:</strong></dt>
+  <dd><%= @teacher.email %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
+  <dd><%= @teacher.name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dd><%= @teacher.last_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:phone) %>:</strong></dt>
+  <dd><%= @teacher.phone %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:about) %>:</strong></dt>
+  <dd><%= @teacher.about %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("Regresar")),
+              teachers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("Editar")),
+              edit_teacher_path(@teacher), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("Eliminar")),
+              teacher_path(@teacher),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Estas Seguro?')) },
+              :class => 'btn btn-danger' %>

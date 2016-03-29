@@ -1,0 +1,17 @@
+<div class="text-center">
+  <h3>Bienvenidos!</h3>
+  <p>Como deseas acceder??</p>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to 'Estudiante', new_student_session_path, class: 'btn btn-primary' %>
+      <hr>
+    </div>
+    <div class="col-md-12">
+      <%= link_to 'Profesor', new_teacher_session_path, class: 'btn btn-success' %>
+      <hr>
+    </div>
+    <div class="col-md-12">
+      <%= link_to 'Usuario', new_user_session_path, class: 'btn btn-info' %>
+    </div>
+  </div>
+</div>

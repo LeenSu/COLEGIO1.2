@@ -1,0 +1,48 @@
+<%- model_class = Score -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:score_one) %></th>
+      <th><%= model_class.human_attribute_name(:score_two) %></th>
+      <th><%= model_class.human_attribute_name(:score_three) %></th>
+      <th><%= model_class.human_attribute_name(:score_four) %></th>
+      <th><%= model_class.human_attribute_name(:score_test) %></th>
+      <th><%= model_class.human_attribute_name(:score_final) %></th>
+      <th><%= model_class.human_attribute_name(:student_id) %></th>
+      <th><%= model_class.human_attribute_name(:course_id) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scores.each do |score| %>
+      <tr>
+        <td><%= link_to score.id, score_path(score) %></td>
+        <td><%= score.score_one %></td>
+        <td><%= score.score_two %></td>
+        <td><%= score.score_three %></td>
+        <td><%= score.score_four %></td>
+        <td><%= score.score_test %></td>
+        <td><%= score.score_final %></td>
+        <td><%= full_name(score.student) %></td>
+        <td><%= score.course.name %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_score_path(score), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      score_path(score),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_score_path,
+            :class => 'btn btn-primary' %>

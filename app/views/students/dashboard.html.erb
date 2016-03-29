@@ -1,0 +1,55 @@
+<div class="dashboard">
+  <div class="jumbotron">
+    <h2><strong>Hola <%= full_name(current_student) %>!</strong></h2>
+    <p>Bienvenido a tu Colegio</p>
+    <p><strong>Grado Actual: </strong><%= current_student.grades.actual.first.name unless current_student.grades.actual.first.name.blank? %></p>
+    <p><strong>Periodo Actual: </strong><%= current_student.grades.actual.first.period.name unless current_student.grades.actual.first.period.name.blank? %></p>
+    <%= link_to 'Ver mi Perfil', student_profile_path,class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<div class="actuales">
+  <h3><strong>Materias Actuales</strong></h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Maestro</th>
+      <th>Periodo</th>
+      <th>Estado</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @courses.each_with_index do |c, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= c.name %></td>
+          <td><%= full_name(c.teacher) %></td>
+          <td><%= c.grade.period.name %></td>
+          <td>
+            <% if c.grade.current? %>
+                <span class="label label-success">Cursando</span>
+            <% else %>
+                <span class="label label-danger">finalizado</span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to 'Ver detalles', student_course_path(c), class: 'btn btn-xs btn-default' if student_signed_in? %>
+            <%= link_to 'Editar', edit_course_path(c), class: 'btn btn-xs btn-default' if user_signed_in? %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div> <!-- Actuales -->
+
+<div class="antiguos">
+  <% unless @grades_old.blank? %>
+    <h3><strong>Grados finalizados</strong></h3>
+      <% @grades_old.each do |g| %>
+        <%= link_to "#{g.name} #{g.period.name}",student_grade_path(g),class: 'btn btn-info' %>
+      <% end %>
+  <% end %>
+</div>

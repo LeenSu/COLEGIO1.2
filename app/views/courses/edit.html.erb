@@ -1,0 +1,42 @@
+<%- model_class = Course -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
+
+<hr/>
+
+<h3>Estudiantes</h3>
+<div class="row calificacion">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Q4</th>
+        <th>Examen</th>
+        <th>Calificacion final</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @course.scores.each_with_index do |s, i| %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= full_name(s.student) %></td>
+          <td><%= s.score_one %></td>
+          <td><%= s.score_two %></td>
+          <td><%= s.score_three %></td>
+          <td><%= s.score_four %></td>
+          <td><%= s.score_test %></td>
+          <td><%= s.score_final %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

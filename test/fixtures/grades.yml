@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  period_id: 1
+  current: false
+
+two:
+  name: MyString
+  period_id: 1
+  current: false

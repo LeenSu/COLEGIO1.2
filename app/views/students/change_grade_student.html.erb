@@ -1,0 +1,13 @@
+<h1>Cambiar Grado</h1>
+<hr>
+<h3>Estudiante: <strong><%= full_name(@student)%> </strong></h3>
+<p><stong>Grado Actual:</stong><%= @student.grades.where(current: true).first.name unless @student.grades.where(current: true).blank?%></p>
+<p><stong>Periodo Actual:</stong><%= @student.grades.where(current: true).first.name unless @student.grades.where(current: true).blank?%></p>
+<hr>
+<%= form_tag(action:  :enroll_student) do %>
+    <%= hidden_field_tag :id, @student.id %>
+    <%= label_tag 'Nuevo Grado' %>
+    <%= select_tag :grade_id, options_for_select(set_grades.collect { |g| [[g.name, g.period.name].join(" "), g.id]}),class: 'form-control' %>
+    <br>
+    <%= submit_tag 'Cambiar', class: 'btn btn-primary' %>
+<% end %>

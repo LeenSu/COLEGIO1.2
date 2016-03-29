@@ -1,0 +1,70 @@
+<%- model_class = Grade -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
+<hr>
+<div class="actuales">
+  <h3><strong>Materias Actuales</strong></h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Maestro</th>
+      <th>Periodo</th>
+      <th>Estado</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @grade.courses.each_with_index do |c, i| %>
+    <tr>
+      <th scope="row"><%= i+1 %></th>
+      <td><%= c.name %></td>
+      <td><%= full_name(c.teacher) %></td>
+      <td><%= c.grade.period.name %></td>
+      <td>
+        <% if c.grade.current? %>
+          <span class="label label-success">Cursando</span>
+        <% else %>
+          <span class="label label-danger">finalizado</span>
+        <% end %>
+      </td>
+      <td>
+        <%= link_to 'Ver detalles', '#', class: 'btn btn-xs btn-default' if student_signed_in? %>
+        <%= link_to 'Editar', edit_course_path(c), class: 'btn btn-xs btn-default' if user_signed_in? %>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div> <!-- Actuales -->
+
+<h3><strong>Estudiantes</strong><small><strong> Cant. Inscritos: </strong><%= @grade.students.count %></small></h3>
+<div class="row calificacion">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Telefono</th>
+        <th>Accion</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @grade.students.each_with_index do|s, i|  %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+            <td><%= full_name(s) %></td>
+            <td><%= s.email %></td>
+            <td><%= s.phone %></td>
+            <td><%= link_to 'Editar',edit_student_path(s),class: 'btn btn-xs btn-default' %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

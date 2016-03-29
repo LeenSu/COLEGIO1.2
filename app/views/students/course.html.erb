@@ -1,0 +1,67 @@
+<%= link_to '<< Atras', :back %>
+<hr/>
+<div class="course">
+  <h2><small>Materia:</small><%= @course.name %></h2>
+  <div class="well">
+    <div class="row">
+      <div class="col md 4">
+        <strong>Profesor:</strong><%= link_to full_name(@course.teacher), "mailto:#{@course.teacher.email}" %>
+      </div>
+      <div class="col-md-4">
+        <strong>Grado:</strong><%= @course.grade.name %>
+      </div>
+      <div class="col-md-4">
+        <strong>Estatus:</strong>
+        <% if @course.grade.current? %>
+          <span class="label label-success">Cursando</span>
+        <% else %>
+          <span class="label label-danger">Finalizado</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <h3>Calificaciones</h3>
+  <div class="row calificacion">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Periodo:</strong><%= @course.grade.period.name %></h3>
+        </div>
+
+        <div class="panel-body">
+          <% if @scores.blank? %>
+            Tus Calificaciones aun han sido Publicadas.
+          <% else %>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="well well-sm text-center"><h4><small>C1: </small><Strong><%= @scores.score_one %></Strong></h4></div>
+            </div>
+            <div class="col-md-2">
+              <div class="well well-sm text-center"><h4><small>C2: </small><Strong><%= @scores.score_two %></Strong></h4></div>
+            </div>
+            <div class="col-md-2">
+              <div class="well well-sm text-center"><h4><small>C3: </small><Strong><%= @scores.score_three %></Strong></h4></div>
+            </div>
+            <div class="col-md-2">
+              <div class="well well-sm text-center"><h4><small>C4: </small><Strong><%= @scores.score_four %></Strong></h4></div>
+            </div>
+            <div class="col-md-4">
+              <div class="well well-sm text-center"><h4><i class="fa fa-file-text-o"></i><small>Examen: </small>
+                <strong><%= @scores.score_test %></strong></h4></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="alert alert-success text-center" role="alert"><h4><small>Calificacion Final: </small>
+            <strong><%= @course.grade.current? ? '-' : @scores.score_final %></strong></h4></div>
+          </div>
+        </div>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

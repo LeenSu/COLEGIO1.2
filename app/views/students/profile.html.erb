@@ -1,0 +1,26 @@
+<h1>Mi Perfil</h1>
+</hr>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <h2><%= full_name(@student) %></h2>
+            <p><strong>Email: </strong><%= @student.email %></p>
+            <p><strong>Geneo: </strong><%= @student.genre %></p>
+            <p><strong>Fecha de Nacimiento: </strong><%= @student.birth %></p>
+            <p><strong>Madre: </strong><%= @student.mother %></p>
+            <p><strong>Padre: </strong><%= @student.father %></p>
+            <p><strong>Telefonos: </strong><%= @student.phone %></p>
+            <p><strong>Grados</strong>
+              <% @student.grades.each do |g| %>
+                <span class="label label-info"><%= "#{g.name} #{g.period.name}" %></span>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
