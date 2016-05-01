@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   devise_for :teachers, path_prefix: 'my'
   resources :teachers
-  get 'teacher/course/:id' => 'teachers#course', as: 'teacher/course'
+  get 'teacher/course/:id' => 'teachers#course', as: 'teacher_course'
+  get 'teacher/dashboard' => 'teachers#dashboard', as: 'teacher_dashboard'
 
   devise_for :students, path_prefix: 'my'
   resources :students
