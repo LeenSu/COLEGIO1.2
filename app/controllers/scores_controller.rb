@@ -34,7 +34,7 @@ class ScoresController < ApplicationController
 
     respond_to do |format|
       if @score.save
-        format.html { redirect_to @score, notice: 'Calificaion Creada Exitosamente.' }
+        format.html { redirect_to @score, notice: 'Calificacion Creada Exitosamente.' }
         format.json { render :show, status: :created, location: @score }
       else
         format.html { render :new }

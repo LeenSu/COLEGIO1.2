@@ -1,5 +1,7 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:dashboard, :course]
+  before_action :authenticate_teacher!, only: [:dashboard, :course]
 
   # GET /teachers
   # GET /teachers.json
@@ -63,7 +65,9 @@ class TeachersController < ApplicationController
 
   def dashboard
     #listar las materias activas del maestro y las materias inactivas
-    @course = current_teacher.courses
+    @course = current_teacher.courses.currents
+    #listar las materias finaliozadas
+    @old_courses = current_teacher.courses.old
   end
 
   def course

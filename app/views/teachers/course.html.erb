@@ -1,4 +1,4 @@
-<%= link_to '<< Atras', :back %>
+<%= link_to '<< Atras', teacher_dashboard_path %>
 <hr/>
 <h2><small>Materia:</small><%= @course.name %></h2>
 <div class="well">
@@ -50,7 +50,7 @@
             <td><%= s.score_four %></td>
             <td><%= s.score_test %></td>
             <td><%= s.score_final %></td>
-            <td><%= link_to 'Modificar Calificacion', edit_score_for_teacher_path(s), class: 'btn btn-xs btn-default' if @course.grade.current? %></td>
+            <td><%= link_to 'Modificar Notas', edit_score_for_teacher_path(s), class: 'btn btn-xs btn-default' if @course.grade.current? %></td>
           </tr>
       <% end %>
       </tbody>

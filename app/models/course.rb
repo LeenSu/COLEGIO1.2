@@ -6,5 +6,6 @@ class Course < ActiveRecord::Base
   validates :name, presence: true
 
   scope :currents, -> {where grade_id: Grade.where(current: true)}
+  scope :old, -> {where grade_id: Grade.where(current: false)}
 
 end
