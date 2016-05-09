@@ -5,6 +5,7 @@ source 'http://rubygems.org'
 gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
+gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -25,6 +26,12 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'devise'
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
+
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-bundler','~>1.1.2'
+gem 'capistrano-rails','~>1.1.1'
+gem 'capistrano-rvm', github: "capistrano/rvm"
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
