@@ -27,9 +27,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-bundler','~>1.1.2'
-gem 'capistrano-rails','~>1.1.1'
+gem 'capistrano', '3.4.0'
+gem 'capistrano-bundler'
+gem 'capistrano-rails'
 gem 'capistrano-rvm', github: "capistrano/rvm"
 
 
